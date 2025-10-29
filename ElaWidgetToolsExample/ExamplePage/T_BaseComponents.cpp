@@ -41,6 +41,8 @@ T_BaseComponents::T_BaseComponents(QWidget* parent)
     toggleSwitchDisableText->setTextPixelSize(15);
     connect(toggleSwitchDisableSwitch, &ElaToggleSwitch::toggled, this, [=](bool checked) {
         _toggleSwitch->setDisabled(checked);
+        qInfo()<<"???";
+        qDebug()<<"???!!!";
     });
     toggleSwitchLayout->addWidget(toggleSwitchDisableSwitch);
     toggleSwitchLayout->addWidget(toggleSwitchDisableText);

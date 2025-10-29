@@ -24,7 +24,7 @@ ElaLogPrivate::~ElaLogPrivate()
 
 void ElaLogPrivate::_messageLogHander(QtMsgType type, const QMessageLogContext& ctx, const QString& msg)
 {
-    if (type > QtCriticalMsg)
+    if (type > QtCriticalMsg && type != QtInfoMsg)
     {
         return;
     }
@@ -32,6 +32,11 @@ void ElaLogPrivate::_messageLogHander(QtMsgType type, const QMessageLogContext& 
     QString logTime = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss");
     switch (type)
     {
+    case QtInfoMsg:
+    {
+        logInfo = QString("[%1] -> %2").arg(logTime, msg);
+        break;
+    }
     case QtDebugMsg:
     {
         logInfo = QString("[信息-%1](函数: %2 , 行数: %3) -> %4").arg(logTime, ctx.function, QString::number(ctx.line), msg);
